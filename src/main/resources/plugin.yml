@@ -2,7 +2,7 @@ name: TimaSpec
 version: '${project.version}'
 main: ovh.rootkovskiy.timaspec.Main
 authors: [ timurroot ]
-description: Best spectators system plugin
+description: One looking for the best plugins for the player monitoring system
 website: www.rootkovskiy.ovh
 commands:
   spec: {}
