@@ -1,0 +1,10 @@
+name: TimaSpec
+version: '${project.version}'
+main: ovh.rootkovskiy.timaspec.Main
+authors: [ timurroot ]
+description: Best spectators system plugin
+website: www.rootkovskiy.ovh
+commands:
+  spec: {}
+  exitspec: {}
+  reloadspec: {}
