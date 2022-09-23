@@ -3,7 +3,6 @@ package ovh.rootkovskiy.timaspec.cache;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.entity.Player;
 import ovh.rootkovskiy.timaspec.ColorUtils;
 import ovh.rootkovskiy.timaspec.Main;
 
@@ -40,10 +39,9 @@ public class CacheManager {
     public String radius_message;
     public int radius_value;
 
-
     public void loadArrays() {
-        inspec = new ArrayList<UUID>();
-        targetSystem = new HashMap<UUID, UUID>();
+        inspec = new ArrayList<>();
+        targetSystem = new HashMap<>();
         w = Bukkit.getWorld(Main.getInstance().getConfig().getString("world"));
         x = Main.getInstance().getConfig().getInt("x");
         y = Main.getInstance().getConfig().getInt("y");

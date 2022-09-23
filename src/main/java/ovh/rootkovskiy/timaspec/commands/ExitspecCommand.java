@@ -6,7 +6,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import ovh.rootkovskiy.timaspec.Main;
-import ovh.rootkovskiy.timaspec.cache.CacheManager;
 
 public class ExitspecCommand implements CommandExecutor {
     @Override
@@ -30,7 +29,7 @@ public class ExitspecCommand implements CommandExecutor {
             return true;
         }
 
-        if (!(new CacheManager().inspec.contains(p.getUniqueId()))) {
+        if (!(Main.getCacheManager().inspec.contains(p.getUniqueId()))) {
             sender.sendMessage(Main.getCacheManager().exitspecnonspec);
             return true;
         }
