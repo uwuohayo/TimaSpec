@@ -7,11 +7,12 @@ import ovh.rootkovskiy.timaspec.cache.CacheManager;
 public final class Main extends JavaPlugin {
 
     private static Main instance;
+    private static final CacheManager cacheManager = new CacheManager();
+
     public static Main getInstance() {
         return instance;
     }
 
-    private static CacheManager cacheManager = new CacheManager();
     public static CacheManager getCacheManager() { return cacheManager; }
 
     @Override
