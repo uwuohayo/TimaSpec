@@ -3,17 +3,20 @@ package ovh.rootkovskiy.timaspec;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import ovh.rootkovskiy.timaspec.cache.CacheManager;
+import ovh.rootkovskiy.timaspec.utils.ConsoleUtils;
 
 public final class Main extends JavaPlugin {
 
-    private static Main instance;
     private static final CacheManager cacheManager = new CacheManager();
+    private static Main instance;
 
     public static Main getInstance() {
         return instance;
     }
 
-    public static CacheManager getCacheManager() { return cacheManager; }
+    public static CacheManager getCacheManager() {
+        return cacheManager;
+    }
 
     @Override
     public void onEnable() {

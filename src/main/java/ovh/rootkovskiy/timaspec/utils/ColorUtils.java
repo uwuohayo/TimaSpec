@@ -1,4 +1,4 @@
-package ovh.rootkovskiy.timaspec;
+package ovh.rootkovskiy.timaspec.utils;
 
 import org.bukkit.ChatColor;
 

@@ -3,8 +3,9 @@ package ovh.rootkovskiy.timaspec.cache;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
-import ovh.rootkovskiy.timaspec.ColorUtils;
+import org.bukkit.boss.BossBar;
 import ovh.rootkovskiy.timaspec.Main;
+import ovh.rootkovskiy.timaspec.utils.ColorUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,6 +40,12 @@ public class CacheManager {
     public String radius_message;
     public int radius_value;
 
+    public Boolean bossbar_enable;
+    public String bossbar_message;
+    public String bossbar_color;
+
+    public BossBar abstractBossBar;
+
     public void loadArrays() {
         inspec = new ArrayList<>();
         targetSystem = new HashMap<>();
@@ -66,5 +73,9 @@ public class CacheManager {
         radius_enable = Main.getInstance().getConfig().getBoolean("radius.enable");
         radius_message = ColorUtils.format(Main.getInstance().getConfig().getString("radius.message"));
         radius_value = Main.getInstance().getConfig().getInt("radius.value");
+
+        bossbar_enable = Main.getInstance().getConfig().getBoolean("bossbar.enable");
+        bossbar_message = Main.getInstance().getConfig().getString("bossbar.message");
+        bossbar_color = Main.getInstance().getConfig().getString("bossbar.color");
     }
 }

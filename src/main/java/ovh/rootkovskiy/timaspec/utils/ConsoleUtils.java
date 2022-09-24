@@ -1,4 +1,4 @@
-package ovh.rootkovskiy.timaspec;
+package ovh.rootkovskiy.timaspec.utils;
 
 public interface ConsoleUtils {
     String ANSI_RESET = "\u001B[0m";

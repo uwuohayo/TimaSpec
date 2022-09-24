@@ -34,6 +34,7 @@ public class ExitspecCommand implements CommandExecutor {
             return true;
         }
 
+        Main.getCacheManager().abstractBossBar.removePlayer(p);
         Main.getCacheManager().inspec.remove(p.getUniqueId());
         Main.getCacheManager().targetSystem.remove(p.getUniqueId());
         p.teleport(Main.getCacheManager().spawnlocation);
