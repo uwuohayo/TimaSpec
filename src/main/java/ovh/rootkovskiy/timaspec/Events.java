@@ -9,6 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import ovh.rootkovskiy.timaspec.cache.CacheManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,44 +18,44 @@ import java.util.UUID;
 public class Events implements Listener {
 
     @EventHandler
-    public void command(PlayerCommandPreprocessEvent event) {
+    public void onCommand(PlayerCommandPreprocessEvent event) {
 
         Player checkedPlayer = event.getPlayer();
 
-        if (Main.getCacheManager().inspec.contains(checkedPlayer.getUniqueId())) {
+        if (CacheManager.inspec.contains(checkedPlayer.getUniqueId())) {
             if (!(event.getMessage().equals("/exitspec"))) {
-                checkedPlayer.sendMessage(Main.getCacheManager().cannotsend);
+                checkedPlayer.sendMessage(CacheManager.cannotsend);
                 event.setCancelled(true);
             }
         }
     }
 
     @EventHandler
-    public void message(AsyncPlayerChatEvent event) {
+    public void onMessage(AsyncPlayerChatEvent event) {
 
         Player checkedPlayer = event.getPlayer();
 
-        if (Main.getCacheManager().inspec.contains(checkedPlayer.getUniqueId())) {
+        if (CacheManager.inspec.contains(checkedPlayer.getUniqueId())) {
             if (!(event.getMessage().equals("/exitspec"))) {
-                checkedPlayer.sendMessage(Main.getCacheManager().cannotsend);
+                checkedPlayer.sendMessage(CacheManager.cannotsend);
                 event.setCancelled(true);
             }
         }
     }
 
     @EventHandler
-    public void move(PlayerMoveEvent event) {
+    public void onMove(PlayerMoveEvent event) {
 
-        if (Main.getCacheManager().radius_enable) {
+        if (CacheManager.radius_enable) {
 
             Player checkedPlayer = event.getPlayer();
 
-            if (Main.getCacheManager().inspec.contains(checkedPlayer.getUniqueId())) {
-                UUID targetUUID = Main.getCacheManager().targetSystem.get(checkedPlayer.getUniqueId());
+            if (CacheManager.inspec.contains(checkedPlayer.getUniqueId())) {
+                UUID targetUUID = CacheManager.targetSystem.get(checkedPlayer.getUniqueId());
                 Player target = Bukkit.getPlayer(targetUUID);
 
                 List<Player> nearbytarget = new ArrayList<>();
-                for (Entity entity : target.getNearbyEntities(Main.getCacheManager().radius_value, Main.getCacheManager().radius_value, Main.getCacheManager().radius_value)) {
+                for (Entity entity : target.getNearbyEntities(CacheManager.radius_value, CacheManager.radius_value, CacheManager.radius_value)) {
                     if (entity.getType() == EntityType.PLAYER) {
                         nearbytarget.add(((Player) entity));
                     }
@@ -62,7 +63,7 @@ public class Events implements Listener {
 
                 if (!(nearbytarget.contains(checkedPlayer))) {
                     checkedPlayer.teleport(target);
-                    checkedPlayer.sendMessage(Main.getCacheManager().radius_message);
+                    checkedPlayer.sendMessage(CacheManager.radius_message);
                 }
             }
         }

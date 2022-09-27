@@ -5,6 +5,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import ovh.rootkovskiy.timaspec.Main;
+import ovh.rootkovskiy.timaspec.cache.CacheManager;
 
 public class ReloadspecCommand implements CommandExecutor {
     @Override
@@ -14,17 +15,17 @@ public class ReloadspecCommand implements CommandExecutor {
         //command reloadspec
 
         if (!sender.hasPermission("timaspec.reloadspec")) {
-            sender.sendMessage(Main.getCacheManager().noperm);
+            sender.sendMessage(CacheManager.noperm);
             return true;
         }
 
         if (args.length != 0) {
-            sender.sendMessage(Main.getCacheManager().usagereload);
+            sender.sendMessage(CacheManager.usagereload);
             return true;
         }
 
-        Main.getCacheManager().loadArrays();
-        sender.sendMessage(Main.getCacheManager().successreload);
+        CacheManager.loadArrays();
+        sender.sendMessage(CacheManager.successreload);
         return true;
     }
 }

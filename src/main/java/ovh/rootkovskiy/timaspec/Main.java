@@ -7,23 +7,17 @@ import ovh.rootkovskiy.timaspec.utils.ConsoleUtils;
 
 public final class Main extends JavaPlugin {
 
-    private static final CacheManager cacheManager = new CacheManager();
-    private static Main instance;
-
     public static Main getInstance() {
         return instance;
     }
-
-    public static CacheManager getCacheManager() {
-        return cacheManager;
-    }
+    private static Main instance;
 
     @Override
     public void onEnable() {
         instance = this;
-        cacheManager.loadArrays();
         new Loader().loadAll();
         saveDefaultConfig();
+        CacheManager.loadArrays();
         getLogger().info("Plugin enabled");
         System.out.println(ConsoleUtils.ANSI_GREEN + "#-#-#-#-#-#-#-#-#" + ConsoleUtils.ANSI_RESET);
         System.out.println(ConsoleUtils.ANSI_CYAN + "TimaSpec " + getDescription().getVersion() + " Loaded and Enabled!" + ConsoleUtils.ANSI_RESET);

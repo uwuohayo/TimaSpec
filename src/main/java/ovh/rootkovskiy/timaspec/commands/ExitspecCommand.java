@@ -5,7 +5,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import ovh.rootkovskiy.timaspec.Main;
+import ovh.rootkovskiy.timaspec.cache.CacheManager;
 
 public class ExitspecCommand implements CommandExecutor {
     @Override
@@ -15,31 +15,31 @@ public class ExitspecCommand implements CommandExecutor {
         //command exitspec
 
         if (!(sender instanceof Player)) {
-            sender.sendMessage(Main.getCacheManager().notplayer);
+            sender.sendMessage(CacheManager.notplayer);
             return true;
         }
 
         if (!sender.hasPermission("timaspec.exitspec")) {
-            sender.sendMessage(Main.getCacheManager().noperm);
+            sender.sendMessage(CacheManager.noperm);
             return true;
         }
 
         if (args.length != 0) {
-            sender.sendMessage(Main.getCacheManager().usageexit);
+            sender.sendMessage(CacheManager.usageexit);
             return true;
         }
 
-        if (!(Main.getCacheManager().inspec.contains(p.getUniqueId()))) {
-            sender.sendMessage(Main.getCacheManager().exitspecnonspec);
+        if (!(CacheManager.inspec.contains(p.getUniqueId()))) {
+            sender.sendMessage(CacheManager.exitspecnonspec);
             return true;
         }
 
-        Main.getCacheManager().abstractBossBar.removePlayer(p);
-        Main.getCacheManager().inspec.remove(p.getUniqueId());
-        Main.getCacheManager().targetSystem.remove(p.getUniqueId());
-        p.teleport(Main.getCacheManager().spawnlocation);
-        p.setGameMode(GameMode.SURVIVAL);
-        p.sendMessage(Main.getCacheManager().messageoutspec);
+        CacheManager.abstractBossBar.removePlayer(p);
+        CacheManager.inspec.remove(p.getUniqueId());
+        CacheManager.targetSystem.remove(p.getUniqueId());
+        p.teleport(CacheManager.spawnlocation);
+        p.setGameMode(CacheManager.gamemode_exitspec);
+        p.sendMessage(CacheManager.messageoutspec);
         return true;
     }
 }

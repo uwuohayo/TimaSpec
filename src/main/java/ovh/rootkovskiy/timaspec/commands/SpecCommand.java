@@ -9,6 +9,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import ovh.rootkovskiy.timaspec.Main;
+import ovh.rootkovskiy.timaspec.cache.CacheManager;
 
 public class SpecCommand implements CommandExecutor {
     @Override
@@ -18,43 +19,47 @@ public class SpecCommand implements CommandExecutor {
         //command spec
 
         if (!(sender instanceof Player)) {
-            sender.sendMessage(Main.getCacheManager().notplayer);
+            sender.sendMessage(CacheManager.notplayer);
             return true;
         }
 
         if (!sender.hasPermission("timaspec.spec")) {
-            sender.sendMessage(Main.getCacheManager().noperm);
+            sender.sendMessage(CacheManager.noperm);
             return true;
         }
 
         if (args.length != 1) {
-            sender.sendMessage(Main.getCacheManager().usage);
+            sender.sendMessage(CacheManager.usage);
             return true;
         }
 
         Player target = Bukkit.getPlayer(args[0]);
 
         if (target == null || !target.isOnline()) {
-            sender.sendMessage(Main.getCacheManager().playeroff);
+            sender.sendMessage(CacheManager.playeroff);
             return true;
         }
 
         if (target == p) {
-            sender.sendMessage(Main.getCacheManager().specyourself);
+            sender.sendMessage(CacheManager.specyourself);
             return true;
         }
 
-        Main.getCacheManager().inspec.add(p.getUniqueId());
-        Main.getCacheManager().targetSystem.put(p.getUniqueId(), target.getUniqueId());
-        p.setGameMode(GameMode.SPECTATOR);
+        CacheManager.inspec.add(p.getUniqueId());
+        CacheManager.targetSystem.put(p.getUniqueId(), target.getUniqueId());
+        p.setGameMode(CacheManager.gamemode_inspec);
         p.teleport(target);
 
-        if (Main.getCacheManager().bossbar_enable) {
-            Main.getCacheManager().abstractBossBar = Bukkit.createBossBar(Main.getCacheManager().bossbar_message.replaceAll("%player%", target.getName()), BarColor.valueOf(Main.getCacheManager().bossbar_color), BarStyle.SOLID);
-            Main.getCacheManager().abstractBossBar.addPlayer(p);
+        if (CacheManager.targetglow_enable) {
+            //todo: сделать ебучую систему подсветки нахуй
         }
 
-        sender.sendMessage(Main.getCacheManager().messageinspec);
+        if (CacheManager.bossbar_enable) {
+            CacheManager.abstractBossBar = Bukkit.createBossBar(CacheManager.bossbar_message.replaceAll("%player%", target.getName()), BarColor.valueOf(CacheManager.bossbar_color), BarStyle.SOLID);
+            CacheManager.abstractBossBar.addPlayer(p);
+        }
+
+        sender.sendMessage(CacheManager.messageinspec);
         return true;
     }
 }
