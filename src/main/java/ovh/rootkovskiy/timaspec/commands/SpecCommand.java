@@ -1,14 +1,12 @@
 package ovh.rootkovskiy.timaspec.commands;
 
 import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import ovh.rootkovskiy.timaspec.Main;
 import ovh.rootkovskiy.timaspec.cache.CacheManager;
 
 public class SpecCommand implements CommandExecutor {
