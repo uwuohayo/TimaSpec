@@ -13,6 +13,12 @@ public final class Main extends JavaPlugin {
         return instance;
     }
 
+    public static CacheManager cacheManager;
+
+    public static CacheManager getCacheManager() {
+        return cacheManager;
+    }
+
     @Override
     public void onEnable() {
         instance = this;
